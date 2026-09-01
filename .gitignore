@@ -1,0 +1,6 @@
+/target/
+/.superpowers/
+/.worktrees/
+/.maestro/cache/
+/.maestro/state/
+/.maestro/logs/
