@@ -1,0 +1,25 @@
+# Fast repository gates.
+#
+# No language tier is called: this repository holds documentation and
+# configuration, not code, so `languages` reports nothing and a Rust or
+# TypeScript tier would require checks that can never report. The common tier
+# is the whole gate here, and it covers what this repository actually has --
+# Markdown, TOML, prose, secrets and workflow security.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  common:
+    uses: maestrolabs-hq/.github/.github/workflows/common-fast.yml@main
